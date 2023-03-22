@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Box, TextField, Button, Input } from "@mui/material";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form } from "formik";
 import { object, string } from "yup";
 import { Alert, Snackbar } from "@mui/material";
 import { Blog } from "data/mockdata";
@@ -8,15 +8,9 @@ import { Editor } from "@tinymce/tinymce-react";
 
 const Transactions = () => {
   const editorRef = useRef(null);
-  const log = () => {
-    if (editorRef.current) {
-      console.log(editorRef.current.getContent());
-    }
-  };
   const [showSnackbar, setShowSnackbar] = useState(false);
-  const [imageFile, setImageFile] = useState(null);
+  const [setImageFile] = useState(null);
   const [imageUrl, setImageUrl] = useState(Blog[0].image);
-  const [friendlyUrl, setFriendlyUrl] = useState("");
 
   const validationSchema = object({
     title: string().required("Título da notícia é obrigatório"),
@@ -25,14 +19,9 @@ const Transactions = () => {
     slug: string().required("URL amigável é obrigatória"),
   });
 
-  const [sluged, setSluged] = useState("");
-
-  const [currentBlog, setCurrentBlog] = useState(Blog[0]);
+  const [currentBlog] = useState(Blog[0]);
   const [currentBlogTitle, setCurrentBlogTitle] = useState(Blog[0].title);
-  const [currentBlogImage, setCurrentBlogImage] = useState(Blog[0].image);
-  const [currentBlogContent, setCurrentBlogContent] = useState(
-    Blog[0].conteudo
-  );
+  const [currentBlogContent] = useState(Blog[0].conteudo);
 
   const initialValues = [
     Blog[0].title,
@@ -55,10 +44,10 @@ const Transactions = () => {
     }
     return "";
   };
-  const handleInputChange = (event) => {
+  /*   const handleInputChange = (event) => {
     const value = event.target.value;
     setSluged(value);
-  };
+  }; */
 
   //toda vez o cur mudar o useEffect roda.
   useEffect(() => {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Box, TextField, Button, Input } from "@mui/material";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form } from "formik";
 import { object, string } from "yup";
 import { Alert, Snackbar } from "@mui/material";
 import { Portfolio } from "data/mockdata";
@@ -19,14 +19,9 @@ const Overview = () => {
     slug: string().required("URL amigável é obrigatória"),
   });
 
-  const [sluged, setSluged] = useState("");
-
-  const [currentBlog, setCurrentBlog] = useState(Portfolio[0]);
+  const [currentBlog] = useState(Portfolio[0]);
   const [currentBlogTitle, setCurrentBlogTitle] = useState(Portfolio[0].title);
-  const [currentBlogImage, setCurrentBlogImage] = useState(Portfolio[0].image);
-  const [currentBlogContent, setCurrentBlogContent] = useState(
-    Portfolio[0].conteudo
-  );
+  const [currentBlogContent] = useState(Portfolio[0].conteudo);
 
   const initialValues = [
     Portfolio[0].title,
@@ -49,10 +44,10 @@ const Overview = () => {
     }
     return "";
   };
-  const handleInputChange = (event) => {
+  /*   const handleInputChange = (event) => {
     const value = event.target.value;
     setSluged(value);
-  };
+  }; */
 
   //toda vez o cur mudar o useEffect roda.
   useEffect(() => {
