@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { Box, TextField, Button, Input } from "@mui/material";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form } from "formik";
 import { object, string } from "yup";
 import { Alert, Snackbar } from "@mui/material";
 
@@ -8,15 +8,10 @@ import { Editor } from "@tinymce/tinymce-react";
 
 const Geography = () => {
   const editorRef = useRef(null);
-  const log = () => {
-    if (editorRef.current) {
-      console.log(editorRef.current.getContent());
-    }
-  };
+
   const [showSnackbar, setShowSnackbar] = useState(false);
-  const [imageFile, setImageFile] = useState(null);
+  const [setImageFile] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
-  const [friendlyUrl, setFriendlyUrl] = useState("");
 
   const validationSchema = object({
     title: string().required("Título da notícia é obrigatório"),
@@ -32,11 +27,6 @@ const Geography = () => {
     friendlyUrl: "",
     slug: "",
   };
-
-  const [formState, setFormState] = useState({
-    title: "",
-    slug: "",
-  });
 
   const generateFriendlyUrl = () => {
     if (sluged) {

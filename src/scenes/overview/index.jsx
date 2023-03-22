@@ -3,20 +3,14 @@ import { Box, TextField, Button, Input } from "@mui/material";
 import { Formik, Form, Field } from "formik";
 import { object, string } from "yup";
 import { Alert, Snackbar } from "@mui/material";
-import { Blog, Portfolio } from "data/mockdata";
+import { Portfolio } from "data/mockdata";
 import { Editor } from "@tinymce/tinymce-react";
 
 const Overview = () => {
   const editorRef = useRef(null);
-  const log = () => {
-    if (editorRef.current) {
-      console.log(editorRef.current.getContent());
-    }
-  };
   const [showSnackbar, setShowSnackbar] = useState(false);
-  const [imageFile, setImageFile] = useState(null);
+  const [setImageFile] = useState(null);
   const [imageUrl, setImageUrl] = useState(Portfolio[0].image);
-  const [friendlyUrl, setFriendlyUrl] = useState("");
 
   const validationSchema = object({
     title: string().required("Título da notícia é obrigatório"),
