@@ -5,13 +5,11 @@ import { DataGrid } from "@mui/x-data-grid";
 import { Portfolio } from "data/mockdata";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useGetUserPerformanceQuery } from "state/api";
 import { useNavigate } from "react-router-dom";
 
 const Monthly = () => {
   const theme = useTheme();
   const [rows, setRows] = useState(Portfolio);
-  const { isLoading } = useGetUserPerformanceQuery();
   const navigate = useNavigate();
 
   const columns = [
@@ -104,7 +102,7 @@ const Monthly = () => {
           },
         }}
       >
-        <DataGrid loading={isLoading || !rows} rows={rows} columns={columns} />
+        <DataGrid rows={rows} columns={columns} />
       </Box>
     </Box>
   );
